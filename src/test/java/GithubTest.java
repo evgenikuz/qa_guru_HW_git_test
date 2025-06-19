@@ -31,5 +31,16 @@ public class GithubTest {
         $("[data-filterable-for=wiki-pages-filter]").$(byText("SoftAssertions")).click();
         // проверка, что есть заголовок с примером кода на JUnite5
         $("#user-content-3-using-junit5-extend-test-class").preceding(0).shouldHave(text("3. Using JUnit5 extend test class:"));
+        $("#user-content-3-using-junit5-extend-test-class").parent().sibling(0).shouldHave(text("@ExtendWith({SoftAssertsExtension.class})\n" +
+                "class Tests {\n" +
+                "  @Test\n" +
+                "  void test() {\n" +
+                "    Configuration.assertionMode = SOFT;\n" +
+                "    open(\"page.html\");\n" +
+                "\n" +
+                "    $(\"#first\").should(visible).click();\n" +
+                "    $(\"#second\").should(visible).click();\n" +
+                "  }\n" +
+                "}"));
     }
 }
